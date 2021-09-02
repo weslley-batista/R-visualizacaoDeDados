@@ -1,0 +1,17 @@
+library(quantmod)
+library(shiny)
+library(shinydashboard)
+library(dplyr)
+library(ggplot2)
+library(DT)
+library(tidyverse)
+library(lubridate)
+library(hrbrthemes)
+
+master_df <- read.csv('df_stocks.csv')
+
+#stock_list <- colnames(master_df)
+stock_list <- c('meantemp','humidity','wind_speed','meanpressure')
+master_df <- master_df %>% drop_na()
+master_df$date <- strptime(master_df$date, format='%Y-%m-%d')
+master_df$date <- as.Date(master_df$date)
